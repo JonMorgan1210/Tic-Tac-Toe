@@ -39,8 +39,9 @@ function main() {
         btn.onclick = () => {
             btn.value = turn.currentTurn
             turn.cycleTurn();
-            btn.disabled = true
-            checkWin()
+            btn.disabled = true;
+            checkWin();
+            checkDraw();
         }  
     })
 
@@ -89,21 +90,33 @@ function checkWin() {
     }
 
     //check left to right diagnol
-    let diagStr = ""
+    let diagStr = "";
+    let diagStrtwo = "";
     for (let i = 0; i < 3; i++) {
-        diagStr += grid[i][i] == "" ? "" : grid[i][i].value
-    }
-    winningStr(diagStr);
+        diagStr += grid[i][i] == "" ? "" : grid[i][i].value;
+        let j;
+        if(i == 0){
+            j = 2;
+        } else if(i == 1) {
+            j = 1;
+        } else {
+            j = 0;
+        }
 
-    //check right to left diagnol
-    diagStr = ""
-    for (let i = 2; i>=0; i--) {
-        diagStr += grid[i][i] == "" ? "" : grid[i][i].value
+        diagStrtwo += grid[i][j] == "" ? "" : grid[i][j].value;
     }
     winningStr(diagStr);
+    winningStr(diagStrtwo);
 
 }
 
+function checkDraw() {
+    if (grid.every((row) => {row.every((elem) => {elem != ""})})) {
+        console.log("DRAW");
+    }
+}
+
+//check possible winning string
 function winningStr(str) {
     if (str == "XXX") {
         p1Count++;
