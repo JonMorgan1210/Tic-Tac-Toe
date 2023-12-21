@@ -28,28 +28,49 @@ body {
 
 #topnav h1 {
     background-color: #161b22;
+    margin-left: 10px;
 }
 
-/* #topnav {
+#main-screen {
     overflow: hidden;
-    display: flex;
-    background-color: #161b22;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: .6fr 1fr;
+    grid-template-rows: 1fr;
+    justify-content: center;
 }
 
-#topnav a {
+div p,figure {
+    font-size: large;
+    margin-left: 10px;
+}
+
+#play-area {
+    grid-row: span 2;
     display: flex;
-    font-size:22px;
+    justify-content: center;
+}
+
+#game-grid {
+    overflow: hidden;
+    display: grid;
+    width: 450px;
+	height: 450px;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(3, 150px);
+    justify-content: center;
+    border: 6px solid #2c3e50;
+    background-color: #34495e;
+    border-radius: 10px;
+
+}
+
+#game-grid div {
+    border: 6px solid #2c3e50;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 4em;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    padding-left: 100px;
-    padding-right: 100px;
+    transition: opacity .75s;
 }
-
-#topnav a:hover {
-    background-color: #89929b;
-}
-
-#topnav h1 {
-    background-color: #161b22;
-    margin-right: 700px;
-} */
