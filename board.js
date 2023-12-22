@@ -111,8 +111,8 @@ function checkWin() {
 }
 
 function checkDraw() {
-    if (grid.every((row) => {row.every((elem) => {elem != ""})})) {
-        console.log("DRAW");
+    if (grid.every((row) => {return (row.every((elem) => {return elem.value != ""}))})) {
+        winDisplay("DRAW!");
     }
 }
 
@@ -120,10 +120,10 @@ function checkDraw() {
 function winningStr(str) {
     if (str == "XXX") {
         p1Count++;
-        winDisplay("X");
+        winDisplay("X WINS!");
     } else if (str == "OOO") {
         p2Count++;
-        winDisplay("O");
+        winDisplay("O WINS!");
     }
 }
 
@@ -139,7 +139,7 @@ function clearBoard() {
 function winDisplay (winner) {
     document.querySelector("#game-grid").style.opacity = .5;
     document.querySelector("#win-screen").style.display = "block";
-    document.querySelector('#win-screen pre').innerHTML = winner + " WINS!\nPress replay to play again!";
+    document.querySelector('#win-screen pre').innerHTML = winner + "\nPress replay to play again!";
     document.querySelector('#o-wins').innerHTML = p2Count;
     document.querySelector('#x-wins').innerHTML = p1Count;
 }
