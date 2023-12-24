@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="boardStyles.css" />
+    <script src="board.js" type="module"></script>
+  </head>
+  <body>
+    <form id="play-area">
+      <div id="play-area-nav">
+        <p><strong>X: </strong><strong id="x-wins"></strong></p>
+        <p><strong>O: </strong><strong id="o-wins"></strong></p>
+        <input type="button" id="reset" value="reset" />
+      </div>
+      <div id="win-screen">
+        <pre></pre>
+        <input type="button" id="replay" value="replay">
+      </div>
+      <div id="game-grid">
+        <input type="button" id="top-left" />
+        <input type="button" id="top-mid" />
+        <input type="button" id="top-right" />
+        <input type="button" id="mid-left" />
+        <input type="button" id="mid-mid" />
+        <input type="button" id="mid-right" />
+        <input type="button" id="btm-left" />
+        <input type="button" id="btm-mid" />
+        <input type="button" id="btm-right" />
+      </div>
+    </form>
+  </body>
+</html>
