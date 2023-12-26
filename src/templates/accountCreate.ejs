@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account</title>
+    <link rel="stylesheet" href="../styles/auth.css" />
+    <link rel="stylesheet" href="../styles/topnavStyle.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div id="topnav">
+      <h1 id="title" onclick="window.location.href = '..'">Tic-Tac-Toe:</h1>
+      <a id="leaderboard" href="/leaderboard">Leaderboard</a>
+      <a id="auth" class="active">Sign In/Up</a>
+      <a id="settings" class="fa fa-gear"></a>
+    </div>
+    <div id="main-screen">
+      <fieldset>
+        <form action="" method="post">
+          <label for="user">Username:</label>
+          <input type="text" id="user" name="username" />
+          <br />
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" />
+          <br />
+          <label for="password">Re-enter Password:</label>
+          <input type="password" name="reEnter" id="password" />
+          <br />
+          <p><%- errorMessage %></p>
+          <br />
+          <input type="submit" value="Create" />
+        </form>
+      </fieldset>
+      <a id="createAccount" href="/auth">Back to Login</a>
+    </div>
+  </body>
+</html>

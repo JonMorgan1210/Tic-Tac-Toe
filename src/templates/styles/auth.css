@@ -1,0 +1,42 @@
+#main-screen {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+}
+
+fieldset {
+    width: 300px;
+    background-color: #161b22;
+    border: 8px solid #2c3e50;
+    border-radius: 5px;
+}
+
+input, label {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+input[type="submit"] {
+    margin-top: 30px;
+    float: right;
+}
+
+#createAccount, input{
+    margin-top: 10px;
+    padding: 5px;
+    font-size: large;
+    background-color: #34495e;
+    color: white;
+    border: 5px solid #2c3e50;
+    border-radius: 10px;
+    transition: background-color .75s, border-radius .75s, color .75s;
+    text-decoration: none;
+}
+
+#createAccount:hover, input[type="submit"]:hover {
+    background-color: #89929b;
+    border-radius: 50px;
+    cursor: pointer;
+}

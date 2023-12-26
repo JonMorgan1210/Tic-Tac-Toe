@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="styles/styles.css" type="text/css">
+    <link rel="stylesheet" href="styles/topnavStyle.css" type="text/css">
+    <title>Tic-Tac-Toe</title>
+  </head>
+  <body>
+    <div id="topnav">
+      <h1 id="title">Tic-Tac-Toe:</h1>
+      <a id="leaderboard" href="/leaderboard">Leaderboard</a>
+      <%- topNavLink %>
+      <a id="settings" class="fa fa-gear"></a>
+    </div>
+    <div id="main-screen">
+      <p>
+        Tic-tac-toe is a zero-sum game, which means that if both players are
+        playing their best, then neither player will win. However, if you learn
+        how to play tic-tac-toe and master some simple strategies, then you'll
+        be able to not only play but win the majority of the time. If you want
+        to know how to play tic-tac-toe, then see the HOW TO guide below.
+      </p>
+      <iframe src="/board" width="100%" height="100%" style="border:none;"></iframe>
+      <figure>
+        <figcaption><strong>HOW TO PLAY:</strong></figcaption>
+        <ol type="1">
+          <li>
+            <strong>DECIDE WHO IS X's and O's:</strong>
+            <p>
+              Though traditionally, the first player goes with "X", you can
+              allow the first player to decide whether to go with "X"s or to go
+              with "O"s.
+            </p>
+          </li>
+          <li>
+            <strong>ALTERNATE PLACING X's and O's:</strong>
+            <p>
+              These symbols will be placed on the table, in an attempt to have
+              three of them in a row.
+            </p>
+          </li>
+          <li>
+            <strong>PLAY UNTIL SOMEONE WINS:</strong>
+            <p>
+              Continue placing X's and O's until someone wins. If the board is
+              filled, and noone has a conplete row, then it's a draw.
+            </p>
+          </li>
+          <li>
+            <strong>START PLAYING!:</strong>
+            <p>
+              Choose whether you want to play against an AI or against, a friend
+              (in-person or online), or a stranger. In order to play online and
+              keep track of your leaderboard score, you'll need to make an
+              account in the top left.
+            </p>
+          </li>
+        </ol>
+      </figure>
+    </div>
+  </body>
+</html>
