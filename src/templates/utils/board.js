@@ -142,5 +142,16 @@ function winDisplay (winner) {
     document.querySelector('#win-screen pre').innerHTML = winner + "\nPress replay to play again!";
     document.querySelector('#o-wins').innerHTML = p2Count;
     document.querySelector('#x-wins').innerHTML = p1Count;
+    log(winner);
+}
+
+async function log(winner) {
+    const url = `http://localhost:8080/log`
+    let data = {winner: winner};
+    await fetch(url, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json; charset=UTF-8'}, 
+        body: JSON.stringify(data)
+    });
 }
 

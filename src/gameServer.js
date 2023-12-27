@@ -4,6 +4,7 @@ const authRoute = require('./routes/auth');
 const leaderBoardRoute = require ('./routes/leaderboard');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const users = require('./database/schemas/users');
 
 const app = express();
 const PORT = 8080;
@@ -33,12 +34,52 @@ app.get('/', (req, res) => {
     }
 })
 
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
+})
+
 app.get('/board', (req, res) => {
     res.render('board');
 })
 
 app.get('/profile', (req, res) => {
-    res.render('profile', {id: 'profile', text:'Profile', classLeader: '', classUser:'active'});
+    const {username, wins, loses, score} = req.session.user;
+    const vars = {
+        id: 'profile', 
+        text:'Profile', 
+        classLeader: '', 
+        classUser:'active',
+        username,
+        wins,
+        loses,
+        score
+    };
+    res.render('profile', vars);
+})
+
+app.post('/log', async (req, res) => {
+    const winner = req.body.winner;
+    console.log(0);
+    if (req.session.user) {
+        const {username} = req.session.user;
+        if (winner.includes('X')) {
+            await users.updateOne( { username },
+                {
+                $set: {
+                    wins: (req.session.user.wins += 1),
+                    score: (req.session.user.wins - req.session.user.loses)}
+                })
+        } else if(winner.includes('O')) {
+            await users.updateOne( { username },
+                {
+                $set: {
+                    loses: (req.session.user.loses += 1),
+                    score: (req.session.user.wins - req.session.user.loses)}
+                })
+        }
+    }
+    res.sendStatus(201);
 })
 
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));

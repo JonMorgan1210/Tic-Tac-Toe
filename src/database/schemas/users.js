@@ -10,6 +10,18 @@ const userSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.String,
         required: true,
     },
+    wins: {
+        type: mongoose.SchemaTypes.Number,
+        default: 0,
+    },
+    loses: {
+        type: mongoose.SchemaTypes.Number,
+        default: 0,
+    },
+    score: {
+        type: mongoose.SchemaTypes.Number,
+        default: 0,
+    },
     createdAt: {
         type: mongoose.SchemaTypes.Date,
         required: true,

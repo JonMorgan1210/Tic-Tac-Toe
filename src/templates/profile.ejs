@@ -10,9 +10,18 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <script src="utils/logout.js"></script>
   </head>
   <body>
     <%- include('navbar') %>
-    PROFILE HERE
+    <div id='main-screen'>
+      <div id="statBox">
+        <h1><%- username %></h1>
+        <h2>Wins: <%- wins %></h2>
+        <h2>Loses: <%- loses %></h2>
+        <h2>Score: <%- score %></h2>
+        <button id="logout">logout</button>
+      </div>
+    </div>
   </body>
 </html>
