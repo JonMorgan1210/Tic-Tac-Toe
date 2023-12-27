@@ -27,14 +27,18 @@ app.use('/leaderboard', leaderBoardRoute);
 
 app.get('/', (req, res) => {
     if (!req.session.user){
-        res.render('index', {topNavLink: '<a id="auth" href="/auth">Sign In/Up</a>'});
+        res.render('index', {id: 'auth', text:'Sign In/Up', classLeader: '', classUser:''});
     } else {
-        res.render('index', {topNavLink: '<a id="profile" href="/profile">Profile</a>'});
+        res.render('index', {id: 'profile', text:'Profile', classLeader: '', classUser:''});
     }
 })
 
 app.get('/board', (req, res) => {
     res.render('board');
+})
+
+app.get('/profile', (req, res) => {
+    res.render('profile', {id: 'profile', text:'Profile', classLeader: '', classUser:'active'});
 })
 
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));

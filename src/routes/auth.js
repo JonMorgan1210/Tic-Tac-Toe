@@ -5,34 +5,45 @@ const {hashPassword, comparePassword} = require('../utils/helpers')
 const router = Router();
 
 router.get('/', async (req, res) => {
-    res.render('auth', {errorMessage: ''});
+    res.render('auth', {id: 'auth', text:'Sign In/Up', classLeader: '', classUser:'active', errorMessage:''});
 });
 
 router.post('/', async (req, res) => {
     const {username, password} = req.body;
     const userDB = await users.findOne({ username });
-    const isValid = comparePassword(password, userDB.password);
 
-    if (userDB && isValid) {
+    if (userDB && comparePassword(password, userDB.password)) {
         req.session.user = userDB;
         res.redirect('/');
     } else {
-        res.render('auth', {errorMessage : 'Invalid Credentials'});
+        res.render('auth', {id: 'auth', text:'Sign In/Up', classLeader: '', classUser:'active', errorMessage:'Invalid Credentials'});
     }    
 })
 
 router.get('/register', (req, res) => {
-    res.render('accountCreate', {errorMessage: ''});
+    res.render('accountCreate', {id: 'auth', text:'Sign In/Up', classLeader: '', classUser:'active', errorMessage: ''});
 })
 
 router.post('/register', async (req, res) => {
     const {username, password, reEnter} = req.body;
+    const vars = {
+        id: 'auth', 
+        text:'Sign In/Up', 
+        classLeader: '', 
+        classUser:'active'
+    };
     
-    if (password !== reEnter) return res.render('accountCreate', {errorMessage : "Passwords Don't Match"});
+    if (password !== reEnter) {
+        vars.errorMessage = "Passwords Don't Match";
+        return res.render('accountCreate', vars);
+    }
 
     const checkUser = await users.findOne({ username });
-    if (checkUser) return res.render('accountCreate', {errorMessage : 'Username Taken'});
-
+    if (checkUser) {
+        vars.errorMessage = 'Username Taken';
+        return res.render('accountCreate', vars);
+    }
+    
     const hashedPassword = hashPassword(password);
     users.create({username, password: hashedPassword});
 
