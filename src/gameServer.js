@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const authRoute = require('./routes/auth');
 const leaderBoardRoute = require ('./routes/leaderboard');
+const profileRoute = require('./routes/profile');
+const settingsRoute = require('./routes/settings');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const users = require('./database/schemas/users');
@@ -25,6 +27,8 @@ app.use(session({
 
 app.use('/auth', authRoute);
 app.use('/leaderboard', leaderBoardRoute);
+app.use('/profile', profileRoute);
+app.use('/settings', settingsRoute);
 
 app.get('/', (req, res) => {
     if (!req.session.user){
@@ -43,24 +47,8 @@ app.get('/board', (req, res) => {
     res.render('board');
 })
 
-app.get('/profile', (req, res) => {
-    const {username, wins, loses, score} = req.session.user;
-    const vars = {
-        id: 'profile', 
-        text:'Profile', 
-        classLeader: '', 
-        classUser:'active',
-        username,
-        wins,
-        loses,
-        score
-    };
-    res.render('profile', vars);
-})
-
 app.post('/log', async (req, res) => {
     const winner = req.body.winner;
-    console.log(0);
     if (req.session.user) {
         const {username} = req.session.user;
         if (winner.includes('X')) {
@@ -68,7 +56,7 @@ app.post('/log', async (req, res) => {
                 {
                 $set: {
                     wins: (req.session.user.wins += 1),
-                    score: (req.session.user.wins - req.session.user.loses)}
+                    score: (req.session.user.score = req.session.user.wins - req.session.user.loses)}
                 })
         } else if(winner.includes('O')) {
             await users.updateOne( { username },
